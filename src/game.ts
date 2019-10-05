@@ -193,7 +193,7 @@ export class Game implements ComponentData, GameState {
         sys_performance(this, performance.now() - now, document.querySelector("#fixed"));
 
         // Debug.
-        true && sys_debug(this, delta);
+        false && sys_debug(this, delta);
     }
 
     FrameUpdate(delta: number) {

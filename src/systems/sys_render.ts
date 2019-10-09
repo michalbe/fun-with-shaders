@@ -9,7 +9,11 @@ import {GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT, GL_UNSIGNED_SHORT} from "../we
 
 const QUERY = Has.Transform | Has.Render;
 
+let time = 0;
+
 export function sys_render(game: Game, delta: number) {
+    time += delta;
+
     game.GL.clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     let light_positions: Array<number> = [];
@@ -80,6 +84,7 @@ function draw_basic(game: Game, transform: Transform, render: RenderBasic) {
 
 function draw_shaded(game: Game, transform: Transform, render: RenderShaded) {
     game.GL.uniformMatrix4fv(render.Material.Uniforms[ShadedUniform.World], false, transform.World);
+    game.GL.uniform1f(render.Material.Uniforms[ShadedUniform.Time], time * 2);
     game.GL.uniformMatrix4fv(render.Material.Uniforms[ShadedUniform.Self], false, transform.Self);
     game.GL.uniform4fv(render.Material.Uniforms[ShadedUniform.Color], render.Color);
     game.GL.bindVertexArray(render.VAO);

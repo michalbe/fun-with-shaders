@@ -9,7 +9,7 @@ export function world_stage(game: Game) {
     game.World = [];
     game.Cameras = [];
     game.Lights = [];
-    game.GL.clearColor(1, 0.3, 0.3, 1);
+    game.GL.clearColor(0.0, 0.0, 0.0, 1);
 
     // Player-controlled camera.
     game.Add({
@@ -25,6 +25,24 @@ export function world_stage(game: Game) {
 
     game.Add({
         Translation: [0, 0, 0],
-        Using: [render_shaded(game.Materials[Mat.Phong], Icosphere, [1, 1, 0.3, 1])],
+        Using: [
+            render_shaded(game.Materials[Mat.Lava], Icosphere, [1, 1, 0.3, 1]),
+            // animate({
+            //     [Anim.Idle]: {
+            //         Keyframes: [
+            //             {
+            //                 Timestamp: 0,
+            //                 Rotation: from_euler([0, 0, 0, 0], 0, 0, 0),
+            //                 Ease: ease_in_out_sine,
+            //             },
+            //             {
+            //                 Timestamp: 5,
+            //                 Rotation: from_euler([0, 0, 0, 0], 90, 90, 90),
+            //                 Ease: ease_in_out_sine,
+            //             },
+            //         ],
+            //     },
+            // }),
+        ],
     });
 }

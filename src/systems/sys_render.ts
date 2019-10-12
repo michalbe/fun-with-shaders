@@ -84,8 +84,9 @@ function draw_basic(game: Game, transform: Transform, render: RenderBasic) {
 
 function draw_shaded(game: Game, transform: Transform, render: RenderShaded) {
     game.GL.uniformMatrix4fv(render.Material.Uniforms[ShadedUniform.World], false, transform.World);
-    game.GL.uniform1f(render.Material.Uniforms[ShadedUniform.Time], time * 2);
+    game.GL.uniform1f(render.Material.Uniforms[ShadedUniform.Time], time);
     game.GL.uniformMatrix4fv(render.Material.Uniforms[ShadedUniform.Self], false, transform.Self);
+    game.GL.uniform2fv(render.Material.Uniforms[ShadedUniform.Resolution], [2.2, 2.4]);
     game.GL.uniform4fv(render.Material.Uniforms[ShadedUniform.Color], render.Color);
     game.GL.bindVertexArray(render.VAO);
     game.GL.drawElements(render.Material.Mode, render.Count, GL_UNSIGNED_SHORT, 0);

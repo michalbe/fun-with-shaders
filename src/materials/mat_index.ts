@@ -6,4 +6,5 @@ export const enum Mat {
     Gouraud,
     Phong,
     Lava,
+    Water,
 }

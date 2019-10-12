@@ -47,6 +47,7 @@ export const enum ShadedUniform {
     LightPositions,
     LightDetails,
     Time,
+    Resolution,
 }
 
 function buffer(gl: WebGL2RenderingContext, shape: Shape) {

@@ -27,12 +27,11 @@ let fragment = `#version 300 es
     uniform vec3 light_positions[10];
     uniform vec4 light_details[10];
     uniform float iTime;
+    uniform vec2 iResolution;
 
     in vec4 vert_pos;
     in vec3 vert_normal;
     out vec4 frag_color;
-
-    vec2 iResolution = vec2(2.0, 2.0);
 
     vec2 hash( vec2 x )
     {
@@ -48,7 +47,7 @@ let fragment = `#version 300 es
         vec2 u = f*f*(3.0-2.0*f);
         float n =  mix( mix( dot( hash( i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ),
                         dot( hash( i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
-                    mix( dot( hash( i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
+                        mix( dot( hash( i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
                         dot( hash( i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
         return 0.5 + 0.5*n;
     }
@@ -62,10 +61,7 @@ let fragment = `#version 300 es
     }
 
     void main() {
-        vec3 rgb = vec3(0.0, 0.0, 0.0);
-        vec3 frag_normal = normalize(vert_normal);
-
-        vec2 uv = (vert_pos.xy/iResolution.xy) + vec2(-iTime/200.,0);
+        vec2 uv = (vert_pos.xy/iResolution.xy) + vec2(-iTime/50.,0);
 
         float time = iTime*5.;
         vec2 uv1 = uv*8.;
@@ -105,6 +101,7 @@ export function mat_lava(gl: WebGL2RenderingContext) {
         "light_positions",
         "light_details",
         "iTime",
+        "iResolution",
     ]) {
         material.Uniforms.push(gl.getUniformLocation(material.Program, name)!);
     }

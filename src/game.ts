@@ -26,6 +26,7 @@ import {Mat} from "./materials/mat_index.js";
 import {mat_lava} from "./materials/mat_lava.js";
 import {mat_phong} from "./materials/mat_phong.js";
 import {mat_points} from "./materials/mat_points.js";
+import {mat_water} from "./materials/mat_water.js";
 import {mat_wireframe} from "./materials/mat_wireframe.js";
 import {Vec4} from "./math/index.js";
 import {sys_animate} from "./systems/sys_animate.js";
@@ -154,6 +155,7 @@ export class Game implements ComponentData, GameState {
         this.Materials[Mat.Gouraud] = mat_gouraud(this.GL);
         this.Materials[Mat.Phong] = mat_phong(this.GL);
         this.Materials[Mat.Lava] = mat_lava(this.GL);
+        this.Materials[Mat.Water] = mat_water(this.GL);
     }
 
     CreateEntity(mask: number = 0) {

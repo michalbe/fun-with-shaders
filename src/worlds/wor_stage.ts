@@ -13,7 +13,7 @@ export function world_stage(game: Game) {
 
     // Player-controlled camera.
     game.Add({
-        Translation: [0, 0, 2],
+        Translation: [0, 0, 3],
         ...create_fly_camera(game),
     });
 
@@ -24,25 +24,12 @@ export function world_stage(game: Game) {
     });
 
     game.Add({
-        Translation: [0, 0, 0],
-        Using: [
-            render_shaded(game.Materials[Mat.Lava], Icosphere, [1, 1, 0.3, 1]),
-            // animate({
-            //     [Anim.Idle]: {
-            //         Keyframes: [
-            //             {
-            //                 Timestamp: 0,
-            //                 Rotation: from_euler([0, 0, 0, 0], 0, 0, 0),
-            //                 Ease: ease_in_out_sine,
-            //             },
-            //             {
-            //                 Timestamp: 5,
-            //                 Rotation: from_euler([0, 0, 0, 0], 90, 90, 90),
-            //                 Ease: ease_in_out_sine,
-            //             },
-            //         ],
-            //     },
-            // }),
-        ],
+        Translation: [-1, 0, 0],
+        Using: [render_shaded(game.Materials[Mat.Lava], Icosphere, [1, 1, 0.3, 1])],
+    });
+
+    game.Add({
+        Translation: [1, 0, 0],
+        Using: [render_shaded(game.Materials[Mat.Water], Icosphere, [1, 1, 0.3, 1])],
     });
 }
